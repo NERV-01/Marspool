@@ -18,7 +18,7 @@ dns:
   statistics_interval: 1
   querylog_enabled: true
   querylog_file_enabled: true
-  querylog_interval: 90
+  querylog_interval: 1
   querylog_size_memory: 1000
   anonymize_client_ip: false
   protection_enabled: true
@@ -32,14 +32,10 @@ dns:
   ratelimit_whitelist: []
   refuse_any: true
   upstream_dns:
-  - 223.5.5.5
-  - 114.114.114.114
-  - 119.29.29.29
-  - https://dns.alidns.com/dns-query
+  - 127.0.0.1:8053
   upstream_dns_file: ""
   bootstrap_dns:
-  - 221.12.1.227
-  - 221.12.33.227
+  - 127.0.0.1:8053
   all_servers: true
   fastest_addr: false
   allowed_clients: []
@@ -118,7 +114,11 @@ filters:
 whitelist_filters: []
 user_rules:
 - '||api.miwifi.com^$important'
-- ""
+- /googleads.$~script,domain=~googleads.github.io
+- /pagead/lvz?
+- '||google.com/pagead/'
+- '||static.doubleclick.net^$domain=youtube.com'
+- '||youtube.com/get_midroll_'
 dhcp:
   enabled: false
   interface_name: ""
